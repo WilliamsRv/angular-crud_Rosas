@@ -9,15 +9,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-product-home',
   imports: [
     MatTableModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+
+    FormsModule
   ],
   templateUrl: './product-home.component.html',
   styleUrl: './product-home.component.scss'
@@ -29,6 +33,8 @@ export class ProductHomeComponent implements OnInit {
   productService = inject(ProductService);
   private dialog = inject(MatDialog);
   private snackbar = inject(MatSnackBar);
+  searchTerm: any;
+  selectedCurrency: any;
 
   ngOnInit(): void {
     this.getAll();
@@ -62,5 +68,34 @@ export class ProductHomeComponent implements OnInit {
       }
     })
   }
+  filterProduct() {
+    this.productService.getAll().subscribe(res => {
+      const search = this.searchTerm.toLowerCase();
 
+      this.dataSource = res.data.filter((product: any) => {
+        const matchesText = (
+          (product.name && product.name.toLowerCase().includes(search))
+
+        );
+
+
+
+
+        return matchesText;
+      });
+    });
+  }
+
+  filterProductCurrencyCode() {
+    this.productService.getAll().subscribe(res => {
+      const currency = this.selectedCurrency;
+      this.dataSource = res.data.filter((product: any) => {
+        const matchesCurrency = currency ? product.currencyCode === currency : true;
+
+        return matchesCurrency;
+      }
+      )
+    }
+    )
+  }
 }

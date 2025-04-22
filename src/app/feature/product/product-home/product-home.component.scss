@@ -1,0 +1,54 @@
+// styles.scss
+
+$primary-color: #3b82f6; // Color azul
+$background-color: #f3f4f6; // Color de fondo gris claro
+$text-color: #374151; // Color de texto gris oscuro
+$hover-color: #1d4ed8; // Color azul más oscuro para hover
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; // Espaciado entre elementos
+  padding: 1rem;
+  background-color: $background-color;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  color: $text-color;
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.input {
+  border: 1px solid #d1d5db; // Color de borde gris
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.125rem; // Tamaño de fuente
+  width: 16rem; // Ancho fijo
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); // Sombra azul al enfocar
+  }
+}
+
+.label {
+  font-size: 1.125rem; // Tamaño de fuente
+  font-weight: 500; // Peso de fuente
+  margin-bottom: 0.25rem; // Margen inferior
+}
+
+.select {
+  border: 1px solid #d1d5db; // Color de borde gris
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.125rem; // Tamaño de fuente
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); // Sombra azul al enfocar
+  }
+}

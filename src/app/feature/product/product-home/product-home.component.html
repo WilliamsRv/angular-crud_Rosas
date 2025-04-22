@@ -1,12 +1,30 @@
 <div class="flex justify-between p-4">
-    <div class="flex justify-center items-center">
-        <button type="button" mat-icon-button>
-            <mat-icon>filter_list</mat-icon>
+    <div class="container"> 
+        <button type="button" mat-icon-button class="button">
+          <mat-icon>filter_list</mat-icon>
         </button>
-
-        <input type="text" placeholder="Buscar producto" style="padding: 0.5rem;">
-    </div>
-
+        
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filterProduct()"
+          placeholder="Buscar productos..."
+          class="input"
+        />
+        
+        <div class="flex flex-col">
+          <select
+            id="currencySelect"
+            [(ngModel)]="selectedCurrency"
+            (change)="filterProductCurrencyCode()"
+            class="select"
+          >
+            <option value="">Todas</option>
+            <option value="USD">USD</option>
+            <option value="PEN">PEN</option>
+          </select>
+        </div>
+      </div>
     <button type="button" mat-flat-button (click)="openProductDlg()">
         <mat-icon>add</mat-icon>
         Nuevo producto
